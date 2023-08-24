@@ -1,0 +1,17 @@
+#include "main.h"
+
+
+/**
+ * main - Start LIFO, FILO program
+ * @ac: Number of arguments
+ * @av: Pointer containing arguments
+ * Return: 0 Success, 1 Failed
+ */
+int main(int argc, char **argv)
+{
+	if (ac != 2)
+	{
+		fprintf(stderr, "USAGE: monty file\n");
+		return (EXIT_FAILURE);
+	}
+}
