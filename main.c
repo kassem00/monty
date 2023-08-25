@@ -1,5 +1,20 @@
 #include "monty.h"
-
+global_var_t gl;
+/**
+ * monty_check_arg - check argc
+ * @argc: Number of arguments
+ * Return: int value
+ */
+int monty_check_arg(int argc)
+{
+	if (argc != 2)
+	{
+		fprintf(stderr, "USAGE: monty file\n");
+		exit(EXIT_FAILURE);
+	}
+	else
+		return (0);
+}
 /**
  * main - Start Queue LIFO,Stack FILO program
  * @argc: Number of arguments
@@ -8,31 +23,42 @@
  */
 int main(int argc, char **argv)
 {
-	/*	char buf[1024]; */
+	void (*fun_p)(stack_t **stack, unsigned int line_number);
 	FILE *monty_f;
-	char *buf;
 	ssize_t num_of_line = 0;
-	size_t size_of_buf = 256;
-	if (argc != 2)
-	{
-		fprintf(stderr, "USAGE: monty file\n");
-		return (EXIT_FAILURE);
-	}
+	size_t size_of_buf = BUF_SIZE;
+	char *break_line[2] = {NULL, NULL};
+	
+	monty_check_arg(argc);
 	monty_f = fopen(argv[1], "r");
-
 	if (monty_f == NULL)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
-	/*	fread(&buf, sizeof(buf), 2, monty_f);
-	 */
-
-	num_of_line = getline(&buf, &size_of_buf, monty_f);
+	init_gl(monty_f);
+	num_of_line = getline(&gl.buf, &size_of_buf, monty_f);
 	while (num_of_line != -1)
 	{
-		/*printf("%s", buf);	*/
-		num_of_line = getline(&buf, &size_of_buf, monty_f);
+		break_line[0] = strtok(gl.buf, " \t\n");
+		if (break_line[0] && break_line[0][0] != '$')
+		{
+			fun_p = getopcodes(break_line[0]);
+			if (!fun_p)
+			{
+				fprintf(stderr, "L%u: ", gl.cc);
+				fprintf(stderr, "unknown instruction %s\n", break_line[0]);
+				free_all_gl_var();
+				exit(EXIT_FAILURE);
+			}
+			gl.holder = strtok(NULL, " \t\n");
+			fun_p(&gl.head, gl.cc);
+		}
+		num_of_line = getline(&gl.buf, &size_of_buf, monty_f);
+		gl.cc++;
 	}
+
+	free_all_gl_var();
+
 	return (0);
 }
