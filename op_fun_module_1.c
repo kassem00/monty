@@ -47,15 +47,15 @@ void push(stack_t **doubly, unsigned int cline)
  */
 void pall(stack_t **doubly, unsigned int cline)
 {
-    stack_t *aux;
+    stack_t *temp;
     (void)cline;
 
-    aux = *doubly;
+    temp = *doubly;
 
-    while (aux)
+    while (temp)
     {
-        printf("%d\n", aux->n);
-        aux = aux->next;
+        printf("%d\n", temp->n);
+        temp = temp->next;
     }
 }
 
@@ -90,7 +90,7 @@ void pint(stack_t **doubly, unsigned int cline)
  */
 void pop(stack_t **doubly, unsigned int cline)
 {
-    stack_t *aux;
+    stack_t *temp;
 
     if (doubly == NULL || *doubly == NULL)
     {
@@ -98,9 +98,9 @@ void pop(stack_t **doubly, unsigned int cline)
         free_all_gl_var();
         exit(EXIT_FAILURE);
     }
-    aux = *doubly;
+    temp = *doubly;
     *doubly = (*doubly)->next;
-    free(aux);
+    free(temp);
 }
 
 /**
@@ -113,11 +113,11 @@ void pop(stack_t **doubly, unsigned int cline)
 void swap(stack_t **doubly, unsigned int cline)
 {
     int m = 0;
-    stack_t *aux = NULL;
+    stack_t *temp = NULL;
 
-    aux = *doubly;
+    temp = *doubly;
 
-    for (; aux != NULL; aux = aux->next, m++)
+    for (; temp != NULL; temp = temp->next, m++)
         ;
 
     if (m < 2)
@@ -127,10 +127,10 @@ void swap(stack_t **doubly, unsigned int cline)
         exit(EXIT_FAILURE);
     }
 
-    aux = *doubly;
+    temp = *doubly;
     *doubly = (*doubly)->next;
-    aux->next = (*doubly)->next;
-    aux->prev = *doubly;
-    (*doubly)->next = aux;
+    temp->next = (*doubly)->next;
+    temp->prev = *doubly;
+    (*doubly)->next = temp;
     (*doubly)->prev = NULL;
 }

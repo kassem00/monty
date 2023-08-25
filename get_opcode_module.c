@@ -22,7 +22,7 @@ void (*getopcodes(char *in_opcode))(stack_t **stack, unsigned int line_number)
         {NULL, NULL}};
     int i = 0;
 
-    while (strcmp(instruct[i].opcode, in_opcode))
+    while (!strcmp(instruct[i].opcode, in_opcode))
         i++;
 
     return (instruct[i].f);

@@ -9,11 +9,11 @@
 void add(stack_t **doubly, unsigned int line_number)
 {
     int m = 0;
-    stack_t *aux = NULL;
+    stack_t *temp = NULL;
 
-    aux = *doubly;
+    temp = *doubly;
 
-    for (; aux != NULL; aux = aux->next, m++)
+    for (; temp != NULL; temp = temp->next, m++)
         ;
 
     if (m < 2)
@@ -23,8 +23,8 @@ void add(stack_t **doubly, unsigned int line_number)
         exit(EXIT_FAILURE);
     }
 
-    aux = (*doubly)->next;
-    aux->n += (*doubly)->n;
+    temp = (*doubly)->next;
+    temp->n += (*doubly)->n;
     pop(doubly, line_number);
 }
 
