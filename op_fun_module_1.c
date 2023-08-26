@@ -1,5 +1,4 @@
 #include "monty.h"
-
 /**
  * push - pushes an element to the stack
  *
@@ -9,33 +8,38 @@
  */
 void push(stack_t **doubly, unsigned int cline)
 {
-    int n, j;
+int n, i;
+char *temp = NULL;
+temp = strtok(gl.holder, "$");
+if (temp != NULL)
+{
+printf(" %s\n", temp);
+}
+else
+{ /* if temp point to null */
+fprintf(stderr, "L%u: ", cline);
+fprintf(stderr, "usage: push integer\n");
+free_all_gl_var();
+exit(EXIT_FAILURE);
+}
 
-    if (!gl.holder)
-    {
-        fprintf(stderr, "L%u: ", cline);
-        fprintf(stderr, "usage: push integer\n");
-		free_all_gl_var();
-        exit(EXIT_FAILURE);
-    }
+for (i = 0; temp[i] != '\0'; i++)
+{
+if (isdigit(temp[i]) == 0)
+{
+fprintf(stderr, "L%u: ", cline);
+fprintf(stderr, "usage: push integer\n");
+free_all_gl_var();
+exit(EXIT_FAILURE);
+}
+}
 
-    for (j = 0; gl.holder[j] != '\0'; j++)
-    {
-        if (!isdigit(gl.holder[j]) && gl.holder[j] != '-')
-        {
-            fprintf(stderr, "L%u: ", cline);
-            fprintf(stderr, "usage: push integer\n");
-            free_all_gl_var();
-            exit(EXIT_FAILURE);
-        }
-    }
+n = atoi(temp);
 
-    n = atoi(gl.holder);
-
-    if (gl.working_ident == 1)
-        add_dnodeint(doubly, n);
-    else
-        add_dnodeint_end(doubly, n);
+if (gl.working_ident == STACK_)
+add_dnodeint(doubly, n);
+else
+add_dnodeint_end(doubly, n);
 }
 
 /**
@@ -47,16 +51,16 @@ void push(stack_t **doubly, unsigned int cline)
  */
 void pall(stack_t **doubly, unsigned int cline)
 {
-    stack_t *temp;
-    (void)cline;
+stack_t *temp;
+(void)cline;
 
-    temp = *doubly;
+temp = *doubly;
 
-    while (temp)
-    {
-        printf("%d\n", temp->n);
-        temp = temp->next;
-    }
+while (temp)
+{
+printf("%d\n", temp->n);
+temp = temp->next;
+}
 }
 
 /**
@@ -68,17 +72,16 @@ void pall(stack_t **doubly, unsigned int cline)
  */
 void pint(stack_t **doubly, unsigned int cline)
 {
-    (void)cline;
+(void)cline;
+if (*doubly == NULL)
+{
+fprintf(stderr, "L%u: ", cline);
+fprintf(stderr, "can't pint, stack empty\n");
+free_all_gl_var();
+exit(EXIT_FAILURE);
+}
 
-    if (*doubly == NULL)
-    {
-        fprintf(stderr, "L%u: ", cline);
-        fprintf(stderr, "can't pint, stack empty\n");
-        free_all_gl_var();
-        exit(EXIT_FAILURE);
-    }
-
-    printf("%d\n", (*doubly)->n);
+printf("%d\n", (*doubly)->n);
 }
 
 /**
@@ -90,17 +93,17 @@ void pint(stack_t **doubly, unsigned int cline)
  */
 void pop(stack_t **doubly, unsigned int cline)
 {
-    stack_t *temp;
+stack_t *temp;
 
-    if (doubly == NULL || *doubly == NULL)
-    {
-        fprintf(stderr, "L%u: can't pop an empty stack\n", cline);
-        free_all_gl_var();
-        exit(EXIT_FAILURE);
-    }
-    temp = *doubly;
-    *doubly = (*doubly)->next;
-    free(temp);
+if (doubly == NULL || *doubly == NULL)
+{
+fprintf(stderr, "L%u: can't pop an empty stack\n", cline);
+free_all_gl_var();
+exit(EXIT_FAILURE);
+}
+temp = *doubly;
+*doubly = (*doubly)->next;
+free(temp);
 }
 
 /**
@@ -112,25 +115,25 @@ void pop(stack_t **doubly, unsigned int cline)
  */
 void swap(stack_t **doubly, unsigned int cline)
 {
-    int m = 0;
-    stack_t *temp = NULL;
+int m = 0;
+stack_t *temp = NULL;
 
-    temp = *doubly;
+temp = *doubly;
 
-    for (; temp != NULL; temp = temp->next, m++)
-        ;
+for (; temp != NULL; temp = temp->next, m++)
+;
 
-    if (m < 2)
-    {
-        fprintf(stderr, "L%u: can't swap, stack too short\n", cline);
-        free_all_gl_var();
-        exit(EXIT_FAILURE);
-    }
+if (m < 2)
+{
+fprintf(stderr, "L%u: can't swap, stack too short\n", cline);
+free_all_gl_var();
+exit(EXIT_FAILURE);
+}
 
-    temp = *doubly;
-    *doubly = (*doubly)->next;
-    temp->next = (*doubly)->next;
-    temp->prev = *doubly;
-    (*doubly)->next = temp;
-    (*doubly)->prev = NULL;
+temp = *doubly;
+*doubly = (*doubly)->next;
+temp->next = (*doubly)->next;
+temp->prev = *doubly;
+(*doubly)->next = temp;
+(*doubly)->prev = NULL;
 }

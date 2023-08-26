@@ -3,41 +3,41 @@
 /**
  * getopcodes - selects opcode
  *
- * @opc: opcode passed
+ * @in_opcode: opcode passed
  *
  * Return: pointer to  function
  */
 void (*getopcodes(char *in_opcode))(stack_t **stack, unsigned int line_number)
 {
-    instruction_t instruct[] = {
-        {"push", push},
-        {"pall", pall},
-        {"pint", pint},
-        {"pop", pop},
-        {"swap", swap},
-        {"queue", queue},
-        {"stack", stack},
-        {"add", add},
-        {"nop", nop},
-        {NULL, NULL}};
-    int i = 0;
+instruction_t instruct[] = {
+{"push", push},
+{"pall", pall},
+{"pint", pint},
+{"pop", pop},
+{"swap", swap},
+{"queue", queue},
+{"stack", stack},
+{"add", add},
+{"nop", nop},
+{NULL, NULL}};
+int i = 0;
 
-    while (!strcmp(instruct[i].opcode, in_opcode))
-        i++;
+while (!strcmp(instruct[i].opcode, in_opcode))
+i++;
 
-    return (instruct[i].f);
+return (instruct[i - 1].f);
 }
 
 /**
- * free_all - frees globals
+ * free_all_gl_var - frees globals
  *
  * Return: void
  */
 void free_all_gl_var(void)
 {
-    free_dlistint(gl.head);
-    free(gl.buf);
-    fclose(gl.monty_f);
+free_dlistint(gl.head);
+free(gl.buf);
+fclose(gl.monty_f);
 }
 
 /**
@@ -49,12 +49,12 @@ void free_all_gl_var(void)
 
 void init_gl(FILE *fd)
 {
-    gl.working_ident = STACK_;
-    gl.cc = 1;
-    gl.holder = NULL;
-    gl.head = NULL;
-    gl.monty_f = fd;
-    gl.buf = malloc(sizeof(char) * BUF_SIZE);
+gl.working_ident = STACK_;
+gl.cc = 1;
+gl.holder = NULL;
+gl.head = NULL;
+gl.monty_f = fd;
+gl.buf = malloc(sizeof(char) * BUF_SIZE);
 }
 
 /**
@@ -66,9 +66,9 @@ void init_gl(FILE *fd)
  */
 void queue(stack_t **doubly, unsigned int line_number)
 {
-    (void)doubly;
-    (void)line_number;
-    gl.working_ident = QUEUE_;
+(void)doubly;
+(void)line_number;
+gl.working_ident = QUEUE_;
 }
 
 /**
@@ -80,7 +80,7 @@ void queue(stack_t **doubly, unsigned int line_number)
  */
 void stack(stack_t **doubly, unsigned int line_number)
 {
-    (void)doubly;
-    (void)line_number;
-    gl.working_ident = STACK_;
+(void)doubly;
+(void)line_number;
+gl.working_ident = STACK_;
 }

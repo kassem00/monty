@@ -97,5 +97,6 @@ void free_dlistint(stack_t *head);
 int monty_check_arg(int argc);
 void free_all_gl_var(void);
 void init_gl(FILE *fd);
+void conver(char *);
 /*  use define function */
 #endif
