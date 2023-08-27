@@ -58,7 +58,7 @@ tem = *doubly;
 
 while (tem != NULL)
 {
-printf("%d\n", tem->n);
+fprintf(stdout, "%d\n", tem->n);
 tem = tem->next;
 }
 }
