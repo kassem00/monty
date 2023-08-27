@@ -17,7 +17,7 @@ NULL;
 }
 else
 { /* if temp point to null */
-fprintf(stderr, "L%u:", cline);
+fprintf(stderr, "L%u: ", cline);
 fprintf(stderr, "usage: push integer\n");
 free_all_gl_var();
 exit(EXIT_FAILURE);
@@ -27,7 +27,7 @@ for (i = 0; temp[i] != '\0'; i++)
 {
 if (!isdigit(temp[i]))
 {
-fprintf(stderr, "L%u:", cline);
+fprintf(stderr, "L%u: ", cline);
 fprintf(stderr, "usage: push integer\n");
 free_all_gl_var();
 exit(EXIT_FAILURE);
@@ -75,7 +75,7 @@ void pint(stack_t **doubly, unsigned int cline)
 (void)cline;
 if (*doubly == NULL)
 {
-fprintf(stderr, "L%u:", cline);
+fprintf(stderr, "L%u: ", cline);
 fprintf(stderr, "can't pint, stack empty\n");
 free_all_gl_var();
 exit(EXIT_FAILURE);

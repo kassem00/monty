@@ -34,7 +34,7 @@ remove_Dollar_From_End(break_line[0]);
 fun_p = getopcodes(break_line[0]);
 if (!fun_p)
 {
-fprintf(stderr, "L%u:", gl.cc);
+fprintf(stderr, "L%u: ", gl.cc);
 fprintf(stderr, "unknown instruction %s\n", break_line[0]);
 free_all_gl_var();
 exit(EXIT_FAILURE);
