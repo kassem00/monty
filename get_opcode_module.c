@@ -21,10 +21,14 @@ instruction_t instruct[] = {
 {"nop", nop},
 {NULL, NULL}};
 int i = 0;
-
-while (strcmp(instruct[i].opcode, in_opcode))
+/* printf(" \ninput \t%s ", in_opcode); */
+while (1)
+{
+if (strcmp(instruct[i].opcode, in_opcode) == 0)
+break;
 i++;
-
+}
+/*printf(" \tfound %d %s\n", i,instruct->opcode);*/
 return (instruct[i].f);
 }
 

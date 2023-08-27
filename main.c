@@ -15,6 +15,23 @@ exit(EXIT_FAILURE);
 else
 return (0);
 }
+
+void removeDollarFromEnd(char* str) {
+    size_t length;
+    
+    if (str == NULL) {
+        return;
+    }
+    
+    length = strlen(str);
+    if (length == 0) {
+        return;
+    }
+    
+    if (str[length - 1] == '$') {
+        str[length - 1] = '\0';
+    }
+}
 void clean_spac(char *str)
 {
 	char* source;
@@ -67,12 +84,13 @@ exit(EXIT_FAILURE);
 }
 init_gl(monty_f);
 num_of_line = getline(&gl.buf, &size_of_buf, monty_f);
+clean_spac(gl.buf);
 while (num_of_line != -1)
 {
-clean_spac(gl.buf);
 break_line[0] = strtok(gl.buf, " \t\n");
 if (break_line[0] && break_line[0][0] != '$')
 {
+removeDollarFromEnd(break_line[0]);
 fun_p = getopcodes(break_line[0]);
 if (!fun_p)
 {
