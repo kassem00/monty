@@ -1,66 +1,6 @@
 #include "monty.h"
 global_var_t gl;
-/**
- * monty_check_arg - check argc
- * @argc: Number of arguments
- * Return: int value
- */
-int monty_check_arg(int argc)
-{
-if (argc != 2)
-{
-fprintf(stderr, "USAGE: monty file\n");
-exit(EXIT_FAILURE);
-}
-else
-return (0);
-}
 
-void removeDollarFromEnd(char* str) {
-    size_t length;
-    
-    if (str == NULL) {
-        return;
-    }
-    
-    length = strlen(str);
-    if (length == 0) {
-        return;
-    }
-    
-    if (str[length - 1] == '$') {
-        str[length - 1] = '\0';
-    }
-}
-void clean_spac(char *str)
-{
-	char* source;
-char* destination;
-int foundText = 0;
-
-if (str == NULL) {
-return;
-}
-
-source = str;
-destination = str;
-
-while (*source != '\0') {
-if (isspace(*source)) {
-if (foundText) {
-*destination = *source;
-destination++;
-}
-} else {
-*destination = *source;
-destination++;
-foundText = 1;
-}
-
-source++;
-}
-*destination = '\0';
-}
 /**
  * main - Start Queue LIFO,Stack FILO program
  * @argc: Number of arguments
@@ -90,7 +30,7 @@ while (num_of_line != -1)
 break_line[0] = strtok(gl.buf, " \t\n");
 if (break_line[0] && break_line[0][0] != '$')
 {
-removeDollarFromEnd(break_line[0]);
+remove_Dollar_From_End(break_line[0]);
 fun_p = getopcodes(break_line[0]);
 if (!fun_p)
 {
@@ -105,8 +45,6 @@ fun_p(&gl.head, gl.cc);
 num_of_line = getline(&gl.buf, &size_of_buf, monty_f);
 gl.cc++;
 }
-
 free_all_gl_var();
-
 return (0);
 }

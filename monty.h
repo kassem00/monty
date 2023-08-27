@@ -99,5 +99,6 @@ void free_all_gl_var(void);
 void init_gl(FILE *fd);
 void conver(char *);
 void clean_spac(char *str);
+void remove_Dollar_From_End(char *str);
 /*  use define function */
 #endif
