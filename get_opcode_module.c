@@ -22,10 +22,10 @@ instruction_t instruct[] = {
 {NULL, NULL}};
 int i = 0;
 
-while (!strcmp(instruct[i].opcode, in_opcode))
+while (strcmp(instruct[i].opcode, in_opcode))
 i++;
 
-return (instruct[i-1].f);
+return (instruct[i].f);
 }
 
 /**

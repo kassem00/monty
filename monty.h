@@ -98,5 +98,6 @@ int monty_check_arg(int argc);
 void free_all_gl_var(void);
 void init_gl(FILE *fd);
 void conver(char *);
+void clean_spac(char *str);
 /*  use define function */
 #endif

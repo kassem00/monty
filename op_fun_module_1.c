@@ -56,7 +56,7 @@ stack_t *tem;
 
 tem = *doubly;
 
-while (tem)
+while (tem != NULL)
 {
 printf("%d\n", tem->n);
 tem = tem->next;

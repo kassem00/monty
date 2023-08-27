@@ -15,7 +15,35 @@ exit(EXIT_FAILURE);
 else
 return (0);
 }
+void clean_spac(char *str)
+{
+	char* source;
+char* destination;
+int foundText = 0;
 
+if (str == NULL) {
+return;
+}
+
+source = str;
+destination = str;
+
+while (*source != '\0') {
+if (isspace(*source)) {
+if (foundText) {
+*destination = *source;
+destination++;
+}
+} else {
+*destination = *source;
+destination++;
+foundText = 1;
+}
+
+source++;
+}
+*destination = '\0';
+}
 /**
  * main - Start Queue LIFO,Stack FILO program
  * @argc: Number of arguments
@@ -41,6 +69,7 @@ init_gl(monty_f);
 num_of_line = getline(&gl.buf, &size_of_buf, monty_f);
 while (num_of_line != -1)
 {
+clean_spac(gl.buf);
 break_line[0] = strtok(gl.buf, " \t\n");
 if (break_line[0] && break_line[0][0] != '$')
 {
