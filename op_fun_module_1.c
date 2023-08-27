@@ -40,7 +40,6 @@ if (gl.working_ident == STACK_)
 add_dnodeint(doubly, n);
 else
 add_dnodeint_end(doubly, n);
-printf("END \n");
 }
 
 /**
@@ -52,15 +51,15 @@ printf("END \n");
  */
 void pall(stack_t **doubly, unsigned int cline)
 {
-stack_t *temp;
+stack_t *tem;
 (void)cline;
 
-temp = *doubly;
+tem = *doubly;
 
-while (temp != NULL)
+while (tem)
 {
-printf("%d\n", temp->n);
-temp = temp->next;
+printf("%d\n", tem->n);
+tem = tem->next;
 }
 }
 
