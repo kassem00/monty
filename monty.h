@@ -77,7 +77,6 @@ void queue(stack_t **doubly, unsigned int cline);
 void stack(stack_t **doubly, unsigned int cline);
 void add(stack_t **doubly, unsigned int cline);
 void nop(stack_t **doubly, unsigned int cline); 
-/* workin on it
  void sub(stack_t **doubly, unsigned int cline);
  void div_stack(stack_t **doubly, unsigned int cline);
  void mul(stack_t **doubly, unsigned int cline);
@@ -86,7 +85,6 @@ void nop(stack_t **doubly, unsigned int cline);
  void pstr(stack_t **doubly, unsigned int cline);
  void rotl(stack_t **doubly, unsigned int cline);
  void rotr(stack_t **doubly, unsigned int cline);
- */
 /* opcode function */
 
 /*  use define function */

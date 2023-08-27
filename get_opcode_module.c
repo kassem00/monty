@@ -19,6 +19,14 @@ instruction_t instruct[] = {
 {"stack", stack},
 {"add", add},
 {"nop", nop},
+{"sub", sub},
+{"mul", mul},
+{"div", div_stack},
+{"mod", mod},
+{"pchar", pchar},
+{"pstr", pstr},
+{"rotl", rotl},
+{"rotr", rotr},
 {NULL, NULL}};
 int i = 0;
 /* printf(" \ninput \t%s ", in_opcode); */
