@@ -13,7 +13,7 @@ char *temp = NULL;
 temp = strtok(gl.holder, "$");
 if (temp != NULL)
 {
-printf(" %s\n", temp);
+NULL;
 }
 else
 { /* if temp point to null */
@@ -25,7 +25,7 @@ exit(EXIT_FAILURE);
 
 for (i = 0; temp[i] != '\0'; i++)
 {
-if (isdigit(temp[i]) == 0)
+if (!isdigit(temp[i]))
 {
 fprintf(stderr, "L%u: ", cline);
 fprintf(stderr, "usage: push integer\n");
@@ -40,6 +40,7 @@ if (gl.working_ident == STACK_)
 add_dnodeint(doubly, n);
 else
 add_dnodeint_end(doubly, n);
+printf("END \n");
 }
 
 /**
@@ -56,7 +57,7 @@ stack_t *temp;
 
 temp = *doubly;
 
-while (temp)
+while (temp != NULL)
 {
 printf("%d\n", temp->n);
 temp = temp->next;
